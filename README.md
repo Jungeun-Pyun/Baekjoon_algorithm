@@ -186,6 +186,6 @@ rl.on('line', (input) => {
 ```
 
 
-# inputoutput 폴더 내 Solution.js
+#### 참고코드 : inputoutput 폴더 내 Solution.js
 블로그링크 : <https://jungeunpyun.tistory.com/14?category=914393>
 
