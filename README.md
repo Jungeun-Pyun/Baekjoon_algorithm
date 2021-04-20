@@ -53,24 +53,24 @@ console.log("|\\_/|\n|q p|   /}\n( 0 )\"\"\"\\\n|\"^\"`    |\n||_/=\\\\__|")
 -   예제 입력 : 1 2 
 -   예제 출력 : 3
 
-값을 입력 받기 위해서는 값을 입력받는 모듈인 readline을 호출해야 합니다.
+값을 입력 받기 위해서는 값을 입력받는 모듈인 readline을 호출해야 한다.
 
-readline.createInterface API를 사용하여 Input, Output값을 주고받을 수 있는 readline interface를 생성합니다. 이때, 내부에 input, output값을 넣어줘야 입출력 동작이 이루어 집니다.
+readline.createInterface API를 사용하여 Input, Output값을 주고받을 수 있는 readline interface를 생성한다. 이때, 내부에 input, output값을 넣어줘야 입출력 동작이 이루어 진다.
 
-readline interface를 생성 후에 line 이벤트에 대한 listener를 설정합니다. 이때, 사용자가 직접 입력한 input이라는 매개변수를 받아와서 동작 함수가 진행됩니다.
+readline interface를 생성 후에 line 이벤트에 대한 listener를 설정한다. 이때, 사용자가 직접 입력한 input이라는 매개변수를 받아와서 동작 함수가 진행된다.
 
-문제에서 제시한 예제 입력에 따르면 두 값은 빈 공간으로 나누어져서 입력받아야 합니다.
+문제에서 제시한 예제 입력에 따르면 두 값은 빈 공간으로 나누어져서 입력받아야 한다.
 
-따라서 값을 나눠서 받을 수 있는 input.split 함수를 사용합니다. input.split은 설정한 부호에 따라 값을 나눠주며 하기 예시에서는 빈칸을 기준으로 나눠집니다.
+따라서 값을 나눠서 받을 수 있는 input.split 함수를 사용한다. input.split은 설정한 부호에 따라 값을 나눠주며 하기 예시에서는 빈칸을 기준으로 나누어진다.
 
-생성한 numbers를 확인해보면 객체 type으로 이루어져 있고, 안에 있는 value는 string입니다.  값이 string인 경우 + 연산이 제대로 되지 않기 때문에 value를 모두 Number로 변환해 줍니다. (\* string 값으로 계산할 경우  '1' + '2' = 12)
+생성한 numbers를 확인해보면 객체 type으로 이루어져 있고, 안에 있는 value는 string이다.  값이 string인 경우 + 연산이 제대로 되지 않기 때문에 value를 모두 Number로 변환해 주어야한다. (\* string 값으로 계산할 경우  '1' + '2' = 12)
 
 ```
 console.log(numbers, typeof(numbers)) //[ '1', '2' ] object
 console.log(typeof(numbers[0])) //string
 ```
 
-마지막 close로 결과값 출력과 동시에 이벤트 루프를 종료합니다.
+마지막 close로 결과값 출력과 동시에 이벤트 루프를 종료한다.
 
 ```
 const readline = require("readline") //readline : 입력값 받는 모듈
@@ -99,17 +99,17 @@ rl.on('close', function(){
 
 -   사칙연산, 나머지
 
-해당 5문제는 1000번 문제에서 부호만 변경하면 되므로 언급하지 않겠습니다.
+해당 5문제는 1000번 문제에서 부호만 변경하면 되므로 언급하지 않겠다.
 
 ### 7\. 문제번호 2588
 
 -   (세 자릿수) × (세 자릿수)는 다음과 같은 과정을 통하여 이루어진다. (1)과 (2)위치에 들어갈 세 자리 자연수가 주어질 때 (3), (4), (5), (6)위치에 들어갈 값을 구하는 프로그램을 작성하시오
 
-[##_Image|kage@bv4bLm/btqTSS8L3Ek/KPiJZFsM68EOw0NNNiLPwk/img.png|alignCenter|data-origin-width="0" data-origin-height="0" data-ke-mobilestyle="widthContent"|||_##]
+<img src="https://blog.kakaocdn.net/dn/bv4bLm/btqTSS8L3Ek/KPiJZFsM68EOw0NNNiLPwk/img.png"></img>
 
-본 문제에선 값을 2번 입력해 주어야 했습니다. 그래서 값을 입력하는 동안 이전 값을 보관할 수 있는 input이라는 테이블을 하나 만들어주었습니다. 또한 나눠지지 않은 3자리 수를 받아와야 하므로, split에 어떠한 값도 주지 않았습니다. 
+본 문제에선 값을 2번 입력해 주어야 했다. 그래서 값을 입력하는 동안 이전 값을 보관할 수 있는 input이라는 테이블을 하나 만들어주었다. 또한 나눠지지 않은 3자리 수를 받아와야 하므로, split에 어떠한 값도 주지 않았다. 
 
-문제가 원한 것은 단지 3자리 수 두 개의 곱셈 값이 아닌 각각의 계산 과정이었기 때문에 입력한 값들을 모두 하나씩 input 테이블에 넣어주기 위한 for문을 만들었습니다. 뒤의 계산식은 어떻게든 값을 도출해내기 위해 만든 식입니다. 보다 더 쉽고 좋은 방법이 있다면 알려주시기 바랍니다 :)
+문제가 원한 것은 단지 3자리 수 두 개의 곱셈 값이 아닌 각각의 계산 과정이었기 때문에 입력한 값들을 모두 하나씩 input 테이블에 넣어주기 위한 for문을 만들었다. 뒤의 계산식은 어떻게든 값을 도출해내기 위해 만든 식이다.
 
 ```
 const readline = require("readline") //readline : 입력값 받는 모듈
@@ -157,9 +157,9 @@ rl.on('close', function(){
 
 ---
 
-보다 쉬운 방법을 찾아서 추가합니다.
+보다 쉬운 방법을 찾아서 추가
 
-숫자를 하나씩 받아오는 것이 아니라 두 개의 세 자리 숫자를 받아와서 곱해주는 값만 분해하는 방법입니다.
+숫자를 하나씩 받아오는 것이 아니라 두 개의 세 자리 숫자를 받아와서 곱해주는 값만 분해하는 방법이다.
 
 ```
 const readline = require('readline');
