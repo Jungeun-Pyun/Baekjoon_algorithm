@@ -6,14 +6,13 @@
 
 ***
 
-## 입출력과 사칙연산 : <https://www.acmicpc.net/step/1>
-
+## 📌 입출력과 사칙연산 : <https://www.acmicpc.net/step/1>
 
 ### 1\. 문제 번호 2557
 
 -   Hello World! 출력
 
-```
+```javascript
 console.log("Hello World!")
 ```
 
@@ -23,7 +22,7 @@ console.log("Hello World!")
 
 String 내에서 줄바꿈 : \\n
 
-```
+```javascript
 console.log("강한친구 대한육군\n강한친구 대한육군")
 ```
 
@@ -33,7 +32,7 @@ console.log("강한친구 대한육군\n강한친구 대한육군")
 
 String 내에서 \\ 작성 : \\\\
 
-```
+```javascript
 console.log("\\    /\\\n )  ( ')\n(  /  )\n \\(__)|")
 ```
 
@@ -43,7 +42,7 @@ console.log("\\    /\\\n )  ( ')\n(  /  )\n \\(__)|")
 
 string내에서 " 작성 : \\"
 
-```
+```javascript
 console.log("|\\_/|\n|q p|   /}\n( 0 )\"\"\"\\\n|\"^\"`    |\n||_/=\\\\__|")
 ```
 
@@ -65,14 +64,14 @@ readline interface를 생성 후에 line 이벤트에 대한 listener를 설정�
 
 생성한 numbers를 확인해보면 객체 type으로 이루어져 있고, 안에 있는 value는 string이다.  값이 string인 경우 + 연산이 제대로 되지 않기 때문에 value를 모두 Number로 변환해 주어야한다. (\* string 값으로 계산할 경우  '1' + '2' = 12)
 
-```
+```javascript
 console.log(numbers, typeof(numbers)) //[ '1', '2' ] object
 console.log(typeof(numbers[0])) //string
 ```
 
 마지막 close로 결과값 출력과 동시에 이벤트 루프를 종료한다.
 
-```
+```javascript
 const readline = require("readline") //readline : 입력값 받는 모듈
 
 let a
@@ -111,7 +110,7 @@ rl.on('close', function(){
 
 문제가 원한 것은 단지 3자리 수 두 개의 곱셈 값이 아닌 각각의 계산 과정이었기 때문에 입력한 값들을 모두 하나씩 input 테이블에 넣어주기 위한 for문을 만들었다. 뒤의 계산식은 어떻게든 값을 도출해내기 위해 만든 식이다.
 
-```
+```javascript
 const readline = require("readline") //readline : 입력값 받는 모듈
 
 const rl=readline.createInterface({ // createInterface : Input, Output 값 생성 API
@@ -161,7 +160,7 @@ rl.on('close', function(){
 
 숫자를 하나씩 받아오는 것이 아니라 두 개의 세 자리 숫자를 받아와서 곱해주는 값만 분해하는 방법이다.
 
-```
+```javascript
 const readline = require('readline');
 const rl = readline.createInterface({
     input: process.stdin,
@@ -190,11 +189,11 @@ rl.on('line', (input) => {
 
 ***
 
-## if 문 : <https://www.acmicpc.net/step/4>
+## 📌 if 문 : <https://www.acmicpc.net/step/4>
 
 ### 1\. 문제 번호 1330번, 두 수 비교하기
 
-```
+```javascript
 const readline = require("readline")
 
 let a
@@ -231,7 +230,7 @@ split을 활용하여 값을 여러 개 입력하면 object 형태로 들어가�
 
 처음에 a값 범위를 정할 때, 100>=a>=90 으로 작성했더니 어떤 수를 넣더라도 F가 나왔다. 다중 범위를 넣어줄 땐 **&&**를 사용하는 것을 잊지 말자!
 
-```
+```javascript
 const readline = require('readline')
 const rl = readline.createInterface({
     input : process.stdin,
@@ -265,7 +264,7 @@ rl.on('close',()=>{
 
 ### 3\. 문제번호 2753번, 윤년
 
-```
+```javascript
 const readline = require('readline')
 const rl = readline.createInterface({
     input : process.stdin,
@@ -294,7 +293,7 @@ rl.on('close',()=>{
 
 값을 두개를 받아와야 하기 때문에, 처음 전제조건에 length를 2로 넣어주고 그 안에서 분기를 나눴다.
 
-```
+```javascript
 const readline = require('readline')
 const rl = readline.createInterface({
     input : process.stdin,
@@ -331,7 +330,7 @@ rl.on('close',()=>{
 
 개인적으로 분 단위를 먼저 나누고, 그 안에서 시간 단위를 나누는 것이 편하다고 생각하여 다음과 같이 분기를 나눴다.
 
-```
+```javascript
 const readline = require('readline')
 const rl = readline.createInterface({
     input : process.stdin,
@@ -364,3 +363,7 @@ rl.on('close',()=>{
 
 #### 참고코드 : if 폴더 내 if.js
 블로그링크 : <https://jungeunpyun.tistory.com/29?category=914393>
+
+***
+
+## for 문 : <https://www.acmicpc.net/step/3>
