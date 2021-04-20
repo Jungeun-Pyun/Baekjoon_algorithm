@@ -366,4 +366,337 @@ rl.on('close',()=>{
 
 ***
 
-## for 문 : <https://www.acmicpc.net/step/3>
+## 📌 for 문 : <https://www.acmicpc.net/step/3>
+
+### 1\. 문제번호 2739, 구구단
+
+구구단이기 때문에 1부터 9까지 for문을 돌려주었다.
+
+```javascript
+const readline = require("readline")
+
+const rl = readline.createInterface({
+    input : process.stdin,
+    output : process.stdout
+})
+
+rl.on('line',(input) => {
+
+    for(let i=1;i<10;i++){
+        console.log(`${input} * ${i} =`,input*i)
+    }
+})
+
+rl.on('close', ()=>{
+    process.exit()
+})
+```
+
+### 2\. 문제번호 10950, A+B 출력
+
+rl.on('line', function)으로 받아오는 값은 어차피 라인별로 구분되기 때문에 줄을 신경 쓸 필요는 없다. 다만 여기서 주의할 점은 첫 번째 줄에는 테스트 케이스의 개수가 주어지기 때문에 처음 인수는 제외하고 값을 더해야 한다.
+
+input을 split 하여 nums 테이블에 넣으면 아래와 같이 테이블 형식으로 나오고, 한 줄에 작성된 내용은 하나의 프로퍼티 값으로 들어간다. 따라서 nums의 길이는 line 개수가 되고, 각각의 숫자를 가져오기 위해선 nums\[i\]\[0\] 형식으로 depth를 하나 더 들어가야 한다.
+
+```javascript
+//console.log(nums)결과
+[
+  [ '5' ],
+  [ '1', '1' ],
+  [ '2', '3' ],
+  [ '3', '4' ],
+  [ '9', '8' ],
+  [ '5', '2' ]
+]
+```
+
+```javascript
+const readline = require("readline")
+const rl = readline.createInterface({
+    input : process.stdin,
+    output : process.stdout
+})
+let nums = []
+rl.on('line', (input) => {
+    if(input){
+        nums.push(input.split(" "))
+    }
+}).on('close', function () {
+    // console.log(nums[0])
+    // console.log(Number(nums[0]))
+
+    // console.log("nums : ", nums)
+    for (let i=1;i<nums.length;i++){
+        // console.log(nums.length)
+        // console.log(Number(nums[i][0]))
+        console.log(Number(nums[i][0])+Number(nums[i][1]))
+    }
+    process.exit();
+});
+```
+
+---
+
+같은 문제의 다른 solution이 있어서 소개해보겠다.
+
+rl.once를 사용하면 처음 한 line만 읽어오는 것이 가능하다. 따라서 처음 값을 따로 저장해둘 수 있다.
+
+이후 라인별로 읽어올 때마다 값들을 더한다. 이때, rl.once가 들어갔다고 해서 첫 번째 라인이 rl.on에 해당되지 않는 것은 아니다. 따라서 두 개의 값을 넣어주는 라인으로 구분하기 위해 length로 분기처리를 해주었다.
+
+첫번째 입력값으로 넣어준 만큼 라인을 돌리고 나면 자동으로 close() 이벤트를 실행하고 values 테이블에 push 해둔 값들을 출력하면서 동작이 종료된다.
+
+```javascript
+const readline = require("readline");
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+let totalLength = 0
+let proceed = 0
+const values = []
+rl.once('line', (input)=>{ //once 쓰면 한줄만 읽어오기 가능
+    totalLength = Number(input)
+})
+rl.on('line',(answer)=>{
+    const splitedAnswer = answer.split(' ')
+    // console.log(splitedAnswer)
+    if(splitedAnswer.length > 1){
+        values.push(Number(splitedAnswer[0]) + Number(splitedAnswer[1]))
+    }
+    if(totalLength === proceed) //전체 다 돌면 자동 종료
+        rl.close()
+    proceed++
+}).on('close',(input)=>{
+    // console.log(‘input’,input)
+    for(const item of values){console.log(item)}
+})
+```
+
+### 3\. 문제번호 8393, 합 구하기
+
+```javascript
+const readline = require("readline");
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+let sum = 0
+rl.on('line', (input) => {
+    for(let i=1;i<=input;i++){
+        // console.log(input)
+        sum += i
+        // console.log(sum)
+    }
+    console.log(sum)
+    rl.close()
+}).on('close',(input) => {
+    // console.log(sum)
+})
+```
+
+### 4\. 문제번호 15552,  빠른 A+B
+
+해당 문제는 for문을 사용할 때 입출력 방식이 느리면 여러 줄을 입력 및 출력할 때 발생하는 시간 소모를 해결하는 것을 목표로 한다. javascript 기반 node.js에서 해당 문제를 해결할 때는 값들을 하나의 변수에 모두 넣어둔 뒤에 해당 변수만 출력하는 방식으로 해결할 수 있다.
+
+answer이라는 값을 선언해주었고, 해당 변수에 값들을 string 형식으로 연결해서 붙였다. 마지막 라인에서는 줄 바꿈이 일어나지 않도록 분기처리 하였다.
+
+```javascript
+const readline = require("readline")
+const rl = readline.createInterface({
+    input : process.stdin,
+    output : process.stdout
+})
+let nums = []
+let answer = ""
+rl.on('line', (input) => {
+    if(input){
+        nums.push(input.split(" "))
+    }
+}).on('close', function () {
+    // console.log(nums[0])
+    // console.log(Number(nums[0]))
+
+    // console.log("nums : ", nums)
+    for (let i=1;i<nums.length;i++){
+        // console.log(nums.length)
+        // console.log(Number(nums[i][0]))
+        sum = Number(nums[i][0])+Number(nums[i][1])
+        if(i<nums.length-1){
+            answer += `${sum}\n`
+        } else {
+            answer += `${sum}`
+        }
+    }
+    console.log(answer)
+    process.exit();
+});
+```
+
+### 5\. 문제번호 2741, 1부터 N까지 출력하기
+
+1부터 출력되도록 i 값을 1에서 시작하게끔 for문을 돌려주었다. 분기처리는 간단한 조건식을 사용하였다.
+
+```javascript
+const readline = require("readline");
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+let answer = ""
+rl.on('line', (input) => {
+    for(let i=1;i<=input;i++){
+        (i<input) ? answer += i+"\n" : answer += i
+    }
+    console.log(answer)
+    rl.close()
+})
+```
+
+### 6\. 문제번호 2742, N부터 1까지 출력하기
+
+위와 반대로 N부터 출력이 되도록 i 값을 input에서 시작하게끔 만들어 주었다.
+
+```javascript
+const readline = require("readline");
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+let answer = ""
+rl.on('line', (input) => {
+    for(let i=input;i>0;i--){
+        (i>1) ? answer += i+"\n" : answer += i
+    }
+    console.log(answer)
+    rl.close()
+})
+```
+
+### 7\. 문제번호 11022, A+B에 string 추가
+
+```javascript
+const readline = require("readline")
+const rl = readline.createInterface({
+    input : process.stdin,
+    output : process.stdout
+})
+let nums = []
+let answer = ""
+rl.on('line', (input) => {
+    if(input){
+        nums.push(input.split(" "))
+    }
+}).on('close', function () {
+    // console.log(nums[0])
+    // console.log(Number(nums[0]))
+
+    // console.log("nums : ", nums)
+    for (let i=1;i<nums.length;i++){
+        // console.log(nums.length)
+        // console.log(Number(nums[i][0]))
+        sum = Number(nums[i][0])+Number(nums[i][1])
+        if(i<nums.length-1){
+            answer += `Case #${i}: ${nums[i][0]} + ${nums[i][1]} = ${sum}\n`
+        } else {
+            answer += `Case #${i}: ${nums[i][0]} + ${nums[i][1]} = ${sum}`
+        }
+    }
+    console.log(answer)
+    process.exit();
+});
+```
+
+### 8\. 문제번호 2438, 별 찍기 1
+
+1개부터 N개까지 순차적으로 별을 출력한다. 별이 하나씩 추가되기 때문에 answer값을 매번 초기화하지 않고 기존 값에 별을 추가하여 출력하였다.
+
+```javascript
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+let answer = ""
+rl.on('line', (input) => {
+    for(let i=1;i<=input;i++){
+        answer += "*"
+        console.log(answer)
+    }
+    // console.log(answer)
+    rl.close()
+})
+```
+
+### 9\. 문제번호 2439, 별 찍기 2
+
+1개부터 N개까지 순차적으로 별을 찍지만 오른쪽 정렬이 되게끔 한다. 우선 상위 for문은 별의 개수를 기준으로 잡아서 i값을 1부터 시작했다. 이때 위 문제와 달리 출력 후에 answer값이 매번 초기화되도록 선언을 for문 안쪽에 해주었다.
+
+하위 for문은 space값 기준으로 j값이 input에서부터 시작한다. j값이 i값보다 큰 경우 space을 넣어주고, j값과 i값이 일치하는 순간부터 별을 입력한다. 입력은 결국 input값만큼 일어나야 하기 때문에 j>0까지 for문을 돌려주었다.
+
+```javascript
+const readline = require("readline");
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+rl.on('line', (input) => {
+    for(let i=1;i<=input;i++){
+        let answer = ""
+        for(let j=input;j>0;j--){
+            if (j>i){
+                answer += " "
+            } else{
+                answer += "*"
+            }
+        }
+     console.log(answer)
+    }
+    rl.close()
+})
+```
+
+### 10\. 문제번호 10871, x보다 작은 수 구하기
+
+값의 전체 길이와 x값을 받아서 그보다 작은 수를 출력한다. 문제번호 10950에서 설명한 바와 같이 nums 테이블의 길이는 2이고, depth를 한번 더 들어가서 값을 받아와야 한다.
+
+```javascript
+//console.log(nums)
+
+[
+  [ '10', '5' ],
+  [
+    '1', '10', '4',
+    '9', '2',  '3',
+    '8', '5',  '7',
+    '6'
+  ]
+```
+
+```javascript
+const readline = require("readline");
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+let nums = []
+let answer = ""
+rl.on('line', (input) => {
+    if(input){
+        nums.push(input.split(" "))
+        // console.log(nums)
+    }
+}).on('close', function() {
+    totalLength = Number(nums[0][0])
+    limitNumber = Number(nums[0][1])
+    if (totalLength == nums[1].length) {
+        for(let i=0;i<nums[1].length;i++){
+            if (nums[1][i] < limitNumber) { 
+                answer += nums[1][i] + " "}
+        }
+        console.log(answer)
+    }
+
+});
+```
+#### 참고코드 : for 폴더 내 for.js
+블로그링크 : <https://jungeunpyun.tistory.com/46?category=914393>
