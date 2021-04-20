@@ -2,7 +2,7 @@
 ## Authored by Jungeun Pyun
 
 <백준 - 단계별로 풀어보기> 문제 풀이입니다 : <https://www.acmicpc.net/step>
-- 사용언어 : node.js
+- 사용언어 : javascript
 
 ***
 
