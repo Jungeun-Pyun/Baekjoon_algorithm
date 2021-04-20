@@ -188,3 +188,179 @@ rl.on('line', (input) => {
 #### 참고코드 : inputoutput 폴더 내 Solution.js
 블로그링크 : <https://jungeunpyun.tistory.com/14?category=914393>
 
+***
+
+## if 문 : <https://www.acmicpc.net/step/4>
+
+### 1\. 문제 번호 1330번, 두 수 비교하기
+
+```
+const readline = require("readline")
+
+let a
+let b
+const rl = readline.createInterface({
+    input : process.stdin,
+    output : process.stdout
+})
+
+rl.on('line',(input) => {
+    let numbers = input.split(" ")
+
+    a = Number(numbers[0])
+    b = Number(numbers[1])
+
+    if(a>b) {
+        console.log('>')
+        }else if (a<b) {
+        console.log('<')
+        }else {
+        console.log('==')
+        }
+})
+
+rl.on('close', ()=>{
+
+    process.exit()
+})
+```
+
+### 2\. 문제번호 9498번, 시험 성적
+
+split을 활용하여 값을 여러 개 입력하면 object 형태로 들어가지만 하나의 값만 넣어주면 string으로 들어가게 된다. 이때 **parseInt**를 사용하여 string을 정수값으로 변경할 수 있다.
+
+처음에 a값 범위를 정할 때, 100>=a>=90 으로 작성했더니 어떤 수를 넣더라도 F가 나왔다. 다중 범위를 넣어줄 땐 **&&**를 사용하는 것을 잊지 말자!
+
+```
+const readline = require('readline')
+const rl = readline.createInterface({
+    input : process.stdin,
+    output : process.stdout
+})
+
+let a
+
+rl.on('line',(input)=>{
+    // console.log(input, typeof(input)) //값 string
+    a=parseInt(input)  
+    // console.log(a, typeof(a)) 
+    if(100>=a && a>=90) {
+        console.log('A')
+    }else if (90>a && a>=80) {
+        console.log('B')
+    }else if (80>a && a>=70) {
+        console.log('C')
+    }else if (70>a && a>=60) {
+        console.log('D')
+    }else {
+        console.log('F')
+    }
+
+})
+
+rl.on('close',()=>{
+    process.exit()
+})
+```
+
+### 3\. 문제번호 2753번, 윤년
+
+```
+const readline = require('readline')
+const rl = readline.createInterface({
+    input : process.stdin,
+    output : process.stdout
+})
+
+let y
+
+rl.on('line',(input)=>{
+    y=parseInt(input)  
+    if(y%100==0 && y%400==0){
+        console.log('1')
+    }else if (y%100!=0 && y%4==0){
+        console.log('1')
+    }else {
+        console.log('0')
+    }
+})
+
+rl.on('close',()=>{
+    process.exit()
+})
+```
+
+### 4\. 문제번호 14681번, 사분면 고르기
+
+값을 두개를 받아와야 하기 때문에, 처음 전제조건에 length를 2로 넣어주고 그 안에서 분기를 나눴다.
+
+```
+const readline = require('readline')
+const rl = readline.createInterface({
+    input : process.stdin,
+    output : process.stdout
+})
+
+let numbers = []
+
+rl.on('line',(input)=>{
+    numbers.push(input)
+
+    x = Number(numbers[0])
+    y = Number(numbers[1])
+})
+
+rl.on('close',()=>{
+    if (numbers.length == 2){
+        if (x>0 && y>0){
+            console.log('1')
+        }else if (x<0 && y>0){
+            console.log('2')
+        }else if (x<0 && y<0){
+            console.log('3')
+        }else {
+            console.log('4')
+        }
+    }
+    process.exit()
+})
+
+```
+
+### 5\. 문제번호 2884번, 알람시계
+
+개인적으로 분 단위를 먼저 나누고, 그 안에서 시간 단위를 나누는 것이 편하다고 생각하여 다음과 같이 분기를 나눴다.
+
+```
+const readline = require('readline')
+const rl = readline.createInterface({
+    input : process.stdin,
+    output : process.stdout
+})
+
+let numbers
+
+rl.on('line',(input)=>{
+    numbers = input.split(" ")
+
+    h = Number(numbers[0])
+    m = Number(numbers[1])
+
+    if (m>=45){
+        console.log(`${h} ${m-45}` )
+    }else {
+        if (h != 0){
+        console.log(`${h-1} ${60-(45-m)}`)
+        } else{
+            console.log(`23 ${60-(45-m)}`)
+        }
+    }
+})
+
+rl.on('close',()=>{
+    process.exit()
+})
+```
+
+#### 참고코드 : if 폴더 내 if.js
+블로그링크 : <https://jungeunpyun.tistory.com/29?category=914393>
