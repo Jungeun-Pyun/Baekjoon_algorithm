@@ -185,12 +185,7 @@ rl.on('line', (input) => {
 });
 ```
 
-<pre>
-<code>
-참고 코드
-- inputoutput 폴더 내 Solution.js
-</code>
-</pre>
 
+# inputoutput 폴더 내 Solution.js
 블로그링크 : <https://jungeunpyun.tistory.com/14?category=914393>
 
