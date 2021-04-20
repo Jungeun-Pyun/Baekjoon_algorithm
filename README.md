@@ -6,8 +6,7 @@
 
 ***
 
-## 입출력과 사칙연산
-<https://www.acmicpc.net/step/1>
+## 입출력과 사칙연산 : <https://www.acmicpc.net/step/1>
 
 
 ### 1\. 문제 번호 2557
